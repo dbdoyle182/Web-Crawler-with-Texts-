@@ -19,8 +19,13 @@ function checkURL(siteToCheck) {
             
             jobString += `${element.attribs.title}`
         })
+
+        if (hash === '') {
+            hash =  checksum(response);
+            return;
+        }
         
-        return checksum(jobString)
+        return hash !== checksum(jobString)
     }).catch(err => {
         console.log(`Could not complete fetch of ${url}: ${err}`)
     })
