@@ -1,5 +1,5 @@
 const rp = require("request-promise");
-const checksum = require('checksum')
+const cheerio = require('cheerio');
 
 
 // Variable to store the value of our checksum hash
@@ -11,12 +11,13 @@ function checkURL(siteToCheck) {
 
     return rp(url).then(response => {
 
-        if(hash === '') {
-            hash = checksum(response);
-            return;
-        }
+        const $ = cheerio.load(response);
+        let jobString = "";
 
-        return hash !== checksum(response);
+        $(".jobtitle.turnstileLink").each((i, element) => {
+            console.log(element)
+        })
+        
 
     })
 
@@ -24,9 +25,10 @@ function checkURL(siteToCheck) {
 
 const url = `https://www.indeed.com/jobs?q=Junior%20Developer&l=North%20Carolina&ts=1526994524382&rs=1&fromage=last`;
 
+checkURL(url);
 // Checks for updates every 10 seconds
 // Asynchronously so the fetch request resolves properly
 
-setInterval(async () => {
-    console.log(await checkURL(url));
-}, 10000)
+// setInterval(async () => {
+//     console.log(await checkURL(url));
+// }, 10000)
