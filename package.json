@@ -1,0 +1,19 @@
+{
+  "name": "web-crawler-with-texts-",
+  "version": "1.0.0",
+  "description": "An application that searches the internet and texts me links to related materials that are interesting to me (jobs, apartments, etc.)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dbdoyle182/Web-Crawler-with-Texts-.git"
+  },
+  "author": "Daniel Doyle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dbdoyle182/Web-Crawler-with-Texts-/issues"
+  },
+  "homepage": "https://github.com/dbdoyle182/Web-Crawler-with-Texts-#readme"
+}
