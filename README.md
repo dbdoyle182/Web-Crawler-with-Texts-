@@ -11,4 +11,5 @@ An application that searches the internet and texts me links to related material
 ## Set Up
 
 1. Complete the prerequisites.
-1.
+1. Set up your personal ```.env``` file. Use the following template or complete however you desire: ```TWILIO_ID=<Your ID here> TWILIO_TOKEN=<Your authorization token here>```
+* You can your information at the user dashboard after signing up for a free account.
