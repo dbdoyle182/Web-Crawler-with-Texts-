@@ -1,6 +1,7 @@
 const rp = require("request-promise");
 const cheerio = require('cheerio');
 const checksum = require('checksum');
+const twilio = require('twilio');
 
 
 // Variable to store the value of our checksum hash
@@ -30,6 +31,23 @@ function checkURL(siteToCheck) {
         console.log(`Could not complete fetch of ${url}: ${err}`)
     })
 
+}
+
+const client = new twilio('ACf28596e6c641312bedd5051fe26c79c5', '9587f8a296731d8e77c38fcfc780e618')
+
+function SMS({ body, to, from }) {
+    client.messages
+        .create({
+            body,
+            to,
+            from
+        })
+        .then(() => {
+            console.log(`Success! Message has been sent to ${to}`)
+        })
+        .catch(err => {
+            console.log(err);
+        })
 }
 
 const url = `https://www.indeed.com/jobs?q=Junior%20Developer&l=North%20Carolina&ts=1526994524382&rs=1&fromage=last`;
