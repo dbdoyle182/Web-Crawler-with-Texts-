@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/dbdoyle182/Web-Crawler-with-Texts-#readme",
   "dependencies": {
+    "request": "^2.87.0",
     "request-promise": "^4.2.2"
   }
 }
