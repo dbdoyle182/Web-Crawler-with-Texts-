@@ -25,11 +25,17 @@ function checkURL(siteToCheck) {
         })
 
         if (hash === '') {
-            hash =  checksum(response);
+            hash = checksum(response);
             return;
         }
         
-        return hash !== checksum(jobString)
+        if (checksum(jobString) !== hash) {
+            hash = checksum(jobString);
+            return true;
+        }
+
+        console.log('No change to report!');
+        return false;
     }).catch(err => {
         console.log(`Could not complete fetch of ${url}: ${err}`)
     })
@@ -58,5 +64,13 @@ const url = `https://www.indeed.com/jobs?q=Junior%20Developer&l=North%20Carolina
 // Asynchronously so the fetch request resolves properly
 
 setInterval(async () => {
-    console.log(await checkURL(url));
+    if (await checkURL(url)) {
+        console.log('Found a change! Sending SMS...')
+
+        SMS({
+            body: `There is a new job posting at ${url}!`,
+            to: "+17047710382",
+            from: "+19802383728"
+        });
+    }
 }, 10000)
