@@ -1,5 +1,6 @@
 const rp = require("request-promise");
 const cheerio = require('cheerio');
+const checksum = require('checksum');
 
 
 // Variable to store the value of our checksum hash
@@ -15,10 +16,13 @@ function checkURL(siteToCheck) {
         let jobString = "";
 
         $(".jobtitle.turnstileLink").each((i, element) => {
-            console.log(element)
+            console.log(element.attribs.title)
+            jobString += `${element.attribs.title}`
         })
         
-
+        return checksum(jobString)
+    }).catch(err => {
+        console.log(`Could not complete fetch of ${url}: ${err}`)
     })
 
 }
