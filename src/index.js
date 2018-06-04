@@ -1,3 +1,24 @@
 const rp = require("request-promise");
-const url = `https://www.indeed.com/jobs?q=Junior%20Developer&l=North%20Carolina&ts=1526994524382&rs=1&fromage=last`;
-rp(url).then(response => console.log(response));
+const checksum = require('checksum')
+
+
+// Variable to store the value of our checksum hash
+
+let hash = '';
+
+
+function checkURL(siteToCheck) {
+
+    return rp(url).then(response => {
+
+        if(hash === '') {
+            hash = checksum(response);
+            return;
+        }
+
+        return hash !== checksum(response);
+
+    })
+
+}
+rp(url).then(response => console.log(checksum(response)));
