@@ -7,7 +7,6 @@ require('dotenv').config();
 
 const client = require('twilio')(process.env.TWILIO_ID, process.env.TWILIO_TOKEN)
 
-console.log(client)
 // Variable to store the value of our checksum hash
 
 let hash = '';
