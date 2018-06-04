@@ -1,9 +1,13 @@
 const rp = require("request-promise");
 const cheerio = require('cheerio');
 const checksum = require('checksum');
-const twilio = require('twilio');
+require('dotenv').config();
 
+// Intialize Twilio client
 
+const client = require('twilio')(process.env.TWILIO_ID, process.env.TWILIO_TOKEN)
+
+console.log(client)
 // Variable to store the value of our checksum hash
 
 let hash = '';
@@ -32,8 +36,6 @@ function checkURL(siteToCheck) {
     })
 
 }
-
-const client = new twilio('ACf28596e6c641312bedd5051fe26c79c5', '9587f8a296731d8e77c38fcfc780e618')
 
 function SMS({ body, to, from }) {
     client.messages
